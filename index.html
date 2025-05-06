@@ -4595,5 +4595,145 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log('移動設備點擊支援已啟用');
 });
 </script>
+<script>
+// 這個腳本增強移動裝置上的觸控支援
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('初始化增強型移動裝置觸控支援...');
+  
+  // 修復 app-card 元素
+  const appCards = document.querySelectorAll('.app-card');
+  appCards.forEach(card => {
+    // 只為非超連結卡片添加觸控事件
+    if (!card.getAttribute('href')) {
+      card.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // 提取並執行 onclick 函數
+        const onclickAttr = this.getAttribute('onclick');
+        if (onclickAttr) {
+          console.log('執行卡片點擊:', onclickAttr);
+          eval(onclickAttr);
+        }
+      });
+    }
+  });
+
+  // 修復面板中的返回按鈕
+  const backButtons = document.querySelectorAll('.back-btn');
+  backButtons.forEach(button => {
+    button.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const onclickAttr = this.getAttribute('onclick');
+      if (onclickAttr) {
+        console.log('執行返回按鈕點擊:', onclickAttr);
+        eval(onclickAttr);
+      }
+    });
+  });
+
+  // 修復標籤按鈕
+  const tabButtons = document.querySelectorAll('.tab-btn, .sort-btn, .finance-tab');
+  tabButtons.forEach(button => {
+    button.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const onclickAttr = this.getAttribute('onclick');
+      if (onclickAttr) {
+        console.log('執行標籤按鈕點擊:', onclickAttr);
+        eval(onclickAttr);
+      }
+    });
+  });
+
+  // 修復具有折疊功能的區段標題
+  const sectionHeaders = document.querySelectorAll('.section-header');
+  sectionHeaders.forEach(header => {
+    header.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      console.log('從觸控事件切換區段');
+      toggleSection(this);
+    });
+  });
+
+  // 修復記憶卡片
+  const memoryCards = document.querySelectorAll('.memory-card');
+  memoryCards.forEach(card => {
+    card.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const onclickAttr = this.getAttribute('onclick');
+      if (onclickAttr) {
+        console.log('執行記憶卡片點擊:', onclickAttr);
+        eval(onclickAttr);
+      }
+    });
+  });
+
+  // 修復日曆天數
+  const calendarDays = document.querySelectorAll('.calendar-day');
+  calendarDays.forEach(day => {
+    day.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const onclickAttr = this.getAttribute('onclick');
+      if (onclickAttr && onclickAttr.includes('showDateDetail')) {
+        console.log('執行日曆天數點擊:', onclickAttr);
+        eval(onclickAttr);
+      }
+    });
+  });
+
+  // 修復記帳按鈕
+  const trackingBtn = document.querySelector('.tracking-btn');
+  if (trackingBtn) {
+    trackingBtn.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      console.log('執行記帳按鈕點擊');
+      showTrackingPassword();
+    });
+  }
+
+  // 修復假日項目和計劃項目
+  const listItems = document.querySelectorAll('.holiday-item, .planning-item');
+  listItems.forEach(item => {
+    item.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const onclickAttr = this.getAttribute('onclick');
+      if (onclickAttr) {
+        console.log('執行列表項目點擊:', onclickAttr);
+        eval(onclickAttr);
+      }
+    });
+  });
+
+  // 修復密碼按鈕
+  const passwordButtons = document.querySelectorAll('.password-button');
+  passwordButtons.forEach(button => {
+    button.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const onclickAttr = this.getAttribute('onclick');
+      if (onclickAttr) {
+        console.log('執行密碼按鈕點擊:', onclickAttr);
+        eval(onclickAttr);
+      }
+    });
+  });
+
+  console.log('增強型移動裝置觸控支援已初始化');
+});
+</script>
 	</body>
 	</html>
