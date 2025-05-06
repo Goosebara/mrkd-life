@@ -4548,6 +4548,32 @@ document.addEventListener('DOMContentLoaded', function() {
 	addTouchSupport();
 	console.log('觸摸支援已啟用');
 	});
+
+	document.addEventListener('DOMContentLoaded', function() {
+  // 找到所有有onclick屬性的元素
+  const clickableElements = document.querySelectorAll('[onclick]');
+  
+  clickableElements.forEach(function(element) {
+    const onclickValue = element.getAttribute('onclick');
+    
+    // 添加觸摸事件
+    element.addEventListener('touchstart', function(e) {
+      // 記錄觸摸開始，但不阻止默認行為
+      this.touchStarted = true;
+    });
+    
+    element.addEventListener('touchend', function(e) {
+      if (this.touchStarted) {
+        // 觸摸結束時執行onclick函數
+        e.preventDefault();
+        eval(onclickValue);
+        this.touchStarted = false;
+      }
+    });
+  });
+  
+  console.log('移動設備點擊支援已啟用');
+});
 	</script>
 	</body>
 	</html>
